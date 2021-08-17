@@ -25,21 +25,48 @@ img {
   opacity: 0.7;
 }
 
+/* .taskArea {
+  position: absolute;
+  height: 100vh;
+} */
 
 .taskBox {
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -30%);
+  top: 35%;
+  left: 50%; 
+  transform: translate(-50%, -35%); 
   background-color: rgb(235, 231, 227);
   border: 1px solid black;
   width: 300px;
-  min-height: 50px;
   border-radius: 3px;
+  margin: 0 auto;
 }
 
 input {
-  padding: 10px 20px;
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 10px 30px;
   border-radius: 3px;
   border: 1px solid;
+}
+
+.cardBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 7px 0;
+}
+
+.fa-trash-alt {
+  margin-right: 9px;
+}
+
+.cardText {
+  margin: 0 12px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
