@@ -1,19 +1,43 @@
 import React from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-export const TaskCards = ({ taskList }) => {
+export const TaskCards = ({ taskList, setTaskList }) => {
+  const handleDelete = (id) => {
+    setTaskList(taskList.filter((e) => e.id !== id));
+  };
+
   return (
     <div>
-      <div className="cardArea">
-        {/* これを繰り返し表示させる */}
-        {taskList.map((task) => (
-          <div className="cardBox" key={task.id}>
-            <p className="cardText">{task}</p>
-            <button>
-              <i className="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        ))}
-      </div>
+      <DragDropContext>
+        <Droppable droppableId="characters">
+          {(provided) => (
+            <div
+              className="characters"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {taskList.map((task) => (
+                <Draggable key={task.id} draggableId={task.id} index={task.id}>
+                  {(provided) => (
+                    <div
+                      className="cardBox"
+                      key={task.id}
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <p className="cardText">{task.text}</p>
+                      <button onClick={() => handleDelete(task.id)}>
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 };

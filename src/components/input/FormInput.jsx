@@ -9,9 +9,11 @@ export const FormInput = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(...taskList);
+    if (inputText === "") {
+      return;
+    }
     //タスク配列に追加する。
-    setTaskList([...taskList, inputText]);
+    setTaskList([...taskList, { text: inputText, id: Math.random() * 1000 }]);
     setInputText("");
   };
 

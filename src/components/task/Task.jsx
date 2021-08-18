@@ -15,7 +15,7 @@ export const Task = () => {
         taskList={taskList}
       />
       {/* 次はここから */}
-      <TaskCards taskList={taskList} />
+      <TaskCards taskList={taskList} setTaskList={setTaskList} />
     </div>
   );
 };
