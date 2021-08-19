@@ -6,18 +6,32 @@ export const TaskCards = ({ taskList, setTaskList }) => {
     setTaskList(taskList.filter((e) => e.id !== id));
   };
 
+  const reorder = (list, startIndex, endIndex) => {
+    const remove = list.splice(startIndex, 1);
+    list.splice(endIndex, 0, remove[0]);
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    reorder(taskList, result.source.index, result.destination.index);
+    setTaskList(taskList);
+  };
+
   return (
     <div>
-      <DragDropContext>
-        <Droppable droppableId="characters">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="drappable">
           {(provided) => (
-            <div
-              className="characters"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
+            <div {...provided.droppableProps} ref={provided.innerRef}>
               {taskList.map((task) => (
-                <Draggable key={task.id} draggableId={task.id} index={task.id}>
+                <Draggable
+                  key={task.id}
+                  draggableId={task.draggableId}
+                  index={task.id}
+                >
                   {(provided) => (
                     <div
                       className="cardBox"
@@ -34,6 +48,7 @@ export const TaskCards = ({ taskList, setTaskList }) => {
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>

@@ -13,7 +13,14 @@ export const FormInput = (props) => {
       return;
     }
     //タスク配列に追加する。
-    setTaskList([...taskList, { text: inputText, id: Math.random() * 1000 }]);
+    setTaskList([
+      ...taskList,
+      {
+        text: inputText,
+        id: taskList.length,
+        draggableId: `task${taskList.length}`,
+      },
+    ]);
     setInputText("");
   };
 
