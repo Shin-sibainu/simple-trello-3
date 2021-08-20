@@ -1,11 +1,11 @@
-import { Task } from "./components/task/Task";
+import { TaskBoxes } from "./components/task/TaskBoxes";
 import { Title } from "./components/title/Title";
 
 function App() {
   return (
     <div className="App">
       <Title />
-      <Task />
+      <TaskBoxes />
     </div>
   );
 }

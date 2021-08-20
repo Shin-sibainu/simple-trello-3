@@ -28,8 +28,9 @@ export const FormInput = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <input
+          className="taskCardInput"
           type="text"
-          placeholder="todo"
+          placeholder="add a task"
           value={inputText}
           onChange={handleInput}
         />

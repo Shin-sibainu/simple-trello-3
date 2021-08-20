@@ -3,9 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const reorder = (list, startIndex, endIndex) => {
   const remove = list.splice(startIndex, 1);
-  console.log(list);
   list.splice(endIndex, 0, remove[0]);
-  console.log(list);
 };
 
 export const TaskCards = ({ taskList, setTaskList }) => {
@@ -45,7 +43,10 @@ export const TaskCards = ({ taskList, setTaskList }) => {
                       {...provided.dragHandleProps}
                     >
                       <p className="cardText">{task.text}</p>
-                      <button onClick={() => handleDelete(task.id)}>
+                      <button
+                        className="trashButton"
+                        onClick={() => handleDelete(task.id)}
+                      >
                         <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>
