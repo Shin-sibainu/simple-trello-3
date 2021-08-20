@@ -1,22 +1,26 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
+const reorder = (list, startIndex, endIndex) => {
+  const remove = list.splice(startIndex, 1);
+  console.log(list);
+  list.splice(endIndex, 0, remove[0]);
+  console.log(list);
+};
+
 export const TaskCards = ({ taskList, setTaskList }) => {
   const handleDelete = (id) => {
     setTaskList(taskList.filter((e) => e.id !== id));
   };
-
-  const reorder = (list, startIndex, endIndex) => {
-    const remove = list.splice(startIndex, 1);
-    list.splice(endIndex, 0, remove[0]);
-  };
-
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
-
-    reorder(taskList, result.source.index, result.destination.index);
+    reorder(
+      taskList,
+      result.source.index, //ドラッグ開始配列インデックス
+      result.destination.index
+    ); //ドラッグ目的先終了インデックス);
     setTaskList(taskList);
   };
 
@@ -26,11 +30,11 @@ export const TaskCards = ({ taskList, setTaskList }) => {
         <Droppable droppableId="drappable">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {taskList.map((task) => (
+              {taskList.map((task, index) => (
                 <Draggable
                   key={task.id}
                   draggableId={task.draggableId}
-                  index={task.id}
+                  index={index}
                 >
                   {(provided) => (
                     <div
