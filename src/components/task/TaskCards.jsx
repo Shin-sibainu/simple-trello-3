@@ -1,5 +1,6 @@
 import React from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { TaskCard } from "./TaskCard";
 
 const reorder = (list, startIndex, endIndex) => {
   const remove = list.splice(startIndex, 1);
@@ -7,9 +8,6 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 export const TaskCards = ({ taskList, setTaskList }) => {
-  const handleDelete = (id) => {
-    setTaskList(taskList.filter((e) => e.id !== id));
-  };
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -29,29 +27,13 @@ export const TaskCards = ({ taskList, setTaskList }) => {
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {taskList.map((task, index) => (
-                <Draggable
-                  key={task.id}
-                  draggableId={task.draggableId}
+                <TaskCard
+                  key={index}
+                  task={task}
                   index={index}
-                >
-                  {(provided) => (
-                    <div
-                      className="cardBox"
-                      key={task.id}
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <p className="cardText">{task.text}</p>
-                      <button
-                        className="trashButton"
-                        onClick={() => handleDelete(task.id)}
-                      >
-                        <i className="fas fa-trash-alt"></i>
-                      </button>
-                    </div>
-                  )}
-                </Draggable>
+                  setTaskList={setTaskList}
+                  taskList={taskList}
+                />
               ))}
               {provided.placeholder}
             </div>
