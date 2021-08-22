@@ -92,6 +92,7 @@ h3 {
 .trashButton {
   border: none;
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
 }
 
 .addNextListButton {
@@ -112,4 +113,17 @@ h3 {
 .addNextButtonArea {
   margin-left: 1%;
   margin-top: 25px;
+}
+
+.taskListDeleteButton {
+  background-color: rgb(228, 228, 228);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgb(158, 46, 46);
+}
+
+.taskTitleArea {
+  display: flex;
+  justify-content: space-between;
 }

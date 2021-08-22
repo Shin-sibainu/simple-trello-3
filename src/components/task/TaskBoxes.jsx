@@ -13,7 +13,12 @@ export const TaskBoxes = () => {
   return (
     <div className="taskArea">
       {taskBoxList.map((taskBox) => (
-        <Task key={taskBox.id} />
+        <Task
+          key={taskBox.id}
+          setTaskBoxList={setTaskBoxList}
+          taskBoxList={taskBoxList}
+          taskBox={taskBox}
+        />
       ))}
       <AddNextListButton
         taskBoxList={taskBoxList}
