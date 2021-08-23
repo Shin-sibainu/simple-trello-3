@@ -7,6 +7,7 @@ export const AddNextListButton = ({ taskBoxList, setTaskBoxList }) => {
       ...taskBoxList,
       {
         id: taskBoxList.length,
+        draggableId: `taskBox${taskBoxList.length}`,
       },
     ]);
   };
